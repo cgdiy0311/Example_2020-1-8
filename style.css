@@ -1,0 +1,72 @@
+#app {
+  padding: 0 30px;
+}
+
+p {
+  padding: 0;
+  margin: 0;
+}
+
+h4 {
+  margin: 10px 0 0;
+}
+
+h2 {
+  font-size: 16px;
+}
+
+div {
+  margin-bottom: 10px;
+}
+
+span {
+  width: 100%;
+  background: red;
+  display: inline-block;
+  padding: 10px;
+  color: #fff;
+  box-sizing: border-box;
+  margin: 0;
+}
+
+button {
+  border: none;
+  background: none;
+  outline: none;
+  cursor: pointer;
+  width: 120px;
+  margin: 0;
+  padding: 0;
+  vertical-align: top;
+}
+
+.btn {
+  background: #ccc;
+  padding: 5px;
+  min-height: 30px;
+}
+
+.changeColor span {
+  background: green;
+}
+
+.addName span:after {
+  content: '米斯特姜';
+  margin-left: 10px;
+}
+
+ul {
+  padding: 0;
+}
+
+ul li {
+  list-style: none;
+  display: inline-block;
+  margin: 10px;
+  text-align: center;
+}
+
+ul li img {
+  width: 140px;
+  display: block;
+}

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <title>vue</title>
+</head>
+
+<body>
+  <!-- 元素容器 -->
+  <div id="app">
+    <!-- ▼▼▼ 动态绑定css ▼▼▼ -->
+    <section>
+      <h1>动态绑定样式，两种方式</h1>
+      <div>
+        <h2>方式一：属性绑定</h2>
+        <!-- @click点击后取反 :class内，是否有class取决于布尔值的真假 -->
+        <button @click="attrchangeColor = !attrchangeColor" :class="{changeColor:attrchangeColor}">
+          <span>Hello</span>
+        </button>
+      </div>
+      <div>
+        <h2>方式二：计算属性绑定</h2>
+        <!-- 点击后取反,用逗号隔开后可添加多个取反，即添加多个class :class内为计算的方法的名称 -->
+        <button @click="compChangeColor = !compChangeColor,compAddName = !compAddName" :class="compClasses">
+          <span>Hello</span>
+        </button>
+      </div>
+    </section>
+    <!-- ▲▲▲ 动态绑定css ▲▲▲ -->
+    <!-- ▼▼▼ if和show指令 ▼▼▼ -->
+    <section>
+      <h1>if和show指令</h1>
+      <p>if和show的区别：<br>if是为假时不渲染dom元素，show为假时渲染dom元素，css定义为隐藏</p>
+      <h2>if指令</h2>
+      <div>
+        <!-- if 条件为真时，dom渲染元素；条件为假时，dom不渲染元素 -->
+        <button class="btn" @click="error = !error">error</button>
+        <p v-if="error">error:如果条件为真，那么显示。</p>
+      </div>
+      <div>
+        <!-- if else-if else -->
+        <button class="btn" @click="error2 = !error2">error</button>
+        <button class="btn" @click="success2 = !success2">success</button>
+        <p v-if="error2">error:如果条件为真，那么显示,不会继续走到下一条</p>
+        <p v-else-if="success2">success:如果条件为真，那么显示，不会继续走到下一条</p>
+        <p v-else>other</p>
+      </div>
+      <div>
+        <!-- 拓展 用失去焦点和键盘抬起判断input内是否为空 -->
+        <input type="text" @blur="checkname" @keyup="checkname" v-model="resourcesname" name="resourcesname">
+        <!-- 通过判断input是否为空，切换p内的文字是否显示 -->
+        <p class="err-plchod">{{errname}}</p>
+      </div>
+      <h2>show指令</h2>
+      <div>
+        <!-- show不论真假，dom都渲染元素，为假display: none;为真display: block; -->
+        <button class="btn" @click="open = !open">open</button>
+        <p v-show="open">网络连接成功</p>
+      </div>
+    </section>
+    <!-- ▲▲▲ if和show指令 ▲▲▲ -->
+    <!-- ▼▼▼ v-for指令 ▼▼▼ -->
+    <section>
+      <h2>v-for指令</h2>
+      <!-- v-for 循环遍历 -->
+      <div>
+        <ol>
+          <!-- trainCharacters可自由起名，和结构内的一致即可，characters为数组的名字 -->
+          <li v-for="trainCharacters in characters">
+            {{trainCharacters}}
+          </li>
+        </ol>
+        <ul>
+          <!-- .name和.img是数组内的属性 -->
+          <li v-for="train in trains">
+            {{train.name}}<br><img :src="train.img" alt="">
+          </li>
+        </ul>
+        <!-- 拓展 template模板标签在dom中不会生成，只循环template内的元素 -->
+        <template v-for="student in students">
+          <h4>name:{{student.name}}</h4>
+          <p>age:{{student.age}} / scores:{{student.scores}}</p>
+        </template>
+        <h2>遍历对象</h2>
+        <div>
+          <!-- 把数组中的属性名和属性值都渲染到dom中 -->
+          <template v-for="student in students">
+            <div v-for="(val,key) in student">
+              <p>{{key}} - {{val}}</p>
+            </div>
+          </template>
+        </div>
+      </div>
+    </section>
+    <!-- ▲▲▲ v-for指令 ▲▲▲ -->
+  </div>
+</body>
+<script src="app.js"></script>
+
+</html>
